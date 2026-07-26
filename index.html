@@ -1,34 +1,53 @@
-<!-- TODO 1: Create the HTML Boilerplate -->
-
-<!-- TODO 2: Add Your previous projects' HTML into the public folder -->
-
-<!-- TODO 3: Take screenshots of your project previews and add the images to the images folder -->
-
-<!-- TODO 4: Add titles/subtitles etc. -->
-
-<!-- TODO 5: Add a link to the project pages -->
-
-<!-- TODO 6: Add images to show the project previews
-HINT for TODO 6: You can use the height attribute set to 200 to make the image smaller:
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-height -->
-
-<!-- TODO 7: Add the Contact Me and About Me page links -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <!-- FIX 1: viewport é essencial pra responsividade em celular -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- FIX 2: meta description ajuda em SEO -->
+        <meta name="description" content="Samyuktha's web development portfolio, showcasing HTML/CSS projects.">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <!-- FIX 3: favicon (mesmo que seja um ícone simples) -->
+        <link rel="icon" href="./assets/images/favicon.ico">
         <title>Samyuktha's Portfolio</title>
     </head>
     <body>
-        <h1>Samyuktha's Portfolio</h1>
-        <h2>I am a Web developer</h2>
+        <!-- FIX 4: <header> semântico em vez de h1/h1 soltos direto no body -->
+        <header>
+            <h1 class="title">Samyuktha's Portfolio</h1>
+            <p class="subtitle">Web Developer</p>
+            <!-- FIX 5: era um segundo <h1>, agora virou <p> — só pode haver um h1 por página -->
+        </header>
+
+        <!-- FIX 6: <nav> real, em vez de links soltos em divs no rodapé -->
+        <nav class="main-nav">
+            <a href="./public/about.html">About Me</a>
+            <a href="./public/contact.html">Contact Me</a>
+        </nav>
+
         <hr/>
-        <h3><a href="./public/sam/birthday_index.html">Birthday Invitation</a></h3>
-        <img src ="./assets/images/birthday.png" height="200">
-        <h3><a href="public/sam/movie_index.html">Movie ranking Project</a></h3>
-        <img src="./assets/images/movie rank.png" height="200">
+
+        <!-- FIX 7: <main> engloba o conteúdo principal da página -->
+        <main>
+            <!-- FIX 8: <section> em vez de <div> genérica, e todas usam a mesma classe .project-card -->
+            <section class="project-card">
+                <h2><a href="./public/sam/birthday_index.html">Birthday Invitation</a></h2>
+                <!-- FIX 9: alt descritivo em toda imagem -->
+                <img src="./assets/images/birthday.png" alt="Preview of the Birthday Invitation project" height="200">
+            </section>
+
+            <section class="project-card">
+                <h2><a href="./public/sam/movie_index.html">Movie Ranking Project</a></h2>
+                <!-- FIX 10: nome do arquivo sem espaço (movie-rank.png em vez de "movie rank.png") -->
+                <img src="./assets/images/movie rank.png" alt="Preview of the Movie Ranking project" height="200">
+            </section>
+        </main>
+
         <hr/>
-        <a href="./public/about.html">about me</a>
-        <a href="./public/contact.html">contact me</a>
+
+        <!-- FIX 11: footer semântico pro rodapé -->
+        <footer>
+            <p>&copy; 2026 Samyuktha</p>
+        </footer>
     </body>
 </html>
