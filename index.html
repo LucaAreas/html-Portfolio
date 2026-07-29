@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <!-- FIX 1: viewport é essencial pra responsividade em celular -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- FIX 2: meta description ajuda em SEO -->
-        <meta name="description" content="Samyuktha's web development portfolio, showcasing HTML/CSS projects.">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta name="description" content="Samyuktha's web development portfolio, showcasing HTML/CSS projects." />
+        <link rel="stylesheet" type="text/css" href="style.css" />
         <!-- FIX 3: favicon (mesmo que seja um ícone simples) -->
-        <link rel="icon" href="./assets/images/favicon.ico">
+        <link rel="icon" href="./assets/images/favicon.ico" />
         <title>Samyuktha's Portfolio</title>
     </head>
     <body>
@@ -16,8 +16,23 @@
         <header>
             <h1 class="title">Samyuktha's Portfolio</h1>
             <p class="subtitle">Web Developer</p>
+            <!-- Botão para alternar tema (JS) -->
+            <button id="theme-toggle" aria-pressed="false" type="button">Modo escuro</button>
+            <!-- Contador de visitas -->
+            <div id="visit-counter" aria-live="polite" style="margin-top:8px">Visitas: <span id="visits">0</span></div>
+            <!-- Troca de idioma -->
+            <div style="margin-top:8px">
+                <button id="lang-en" type="button" data-lang="en">EN</button>
+                <button id="lang-pt" type="button" data-lang="pt">PT</button>
+            </div>
             <!-- FIX 5: era um segundo <h1>, agora virou <p> — só pode haver um h1 por página -->
         </header>
+
+        <!-- Pesquisa e total de projetos -->
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:16px 0;">
+            <input id="project-search" type="search" placeholder="Pesquisar projetos..." aria-label="Pesquisar projetos" />
+            <div id="total-projects">Total: <span id="total-count">0</span></div>
+        </div>
 
         <!-- FIX 6: <nav> real, em vez de links soltos em divs no rodapé -->
         <nav class="main-nav">
@@ -25,29 +40,38 @@
             <a href="./public/contact.html">Contact Me</a>
         </nav>
 
-        <hr/>
+        <hr />
 
         <!-- FIX 7: <main> engloba o conteúdo principal da página -->
         <main>
             <!-- FIX 8: <section> em vez de <div> genérica, e todas usam a mesma classe .project-card -->
-            <section class="project-card">
+            <section class="project-card" data-title-en="Birthday Invitation" data-title-pt="Convite de Aniversário" data-desc-en="Birthday invitation project" data-desc-pt="Projeto convite de aniversário">
                 <h2><a href="./public/sam/birthday_index.html">Birthday Invitation</a></h2>
                 <!-- FIX 9: alt descritivo em toda imagem -->
-                <img src="./assets/images/birthday.png" alt="Preview of the Birthday Invitation project" height="200">
+                <img src="./assets/images/birthday.png" alt="Preview of the Birthday Invitation project" height="200" />
+                <div class="project-actions">
+                    <button class="fav-btn" aria-pressed="false" title="Favoritar">☆</button>
+                    <button class="open-btn" type="button">Abrir</button>
+                </div>
             </section>
 
-            <section class="project-card">
+            <section class="project-card" data-title-en="Movie Ranking Project" data-title-pt="Projeto de Ranking de Filmes" data-desc-en="Movie ranking" data-desc-pt="Ranking de filmes">
                 <h2><a href="./public/sam/movie_index.html">Movie Ranking Project</a></h2>
                 <!-- FIX 10: nome do arquivo sem espaço (movie-rank.png em vez de "movie rank.png") -->
-                <img src="./assets/images/movie rank.png" alt="Preview of the Movie Ranking project" height="200">
+                <img src="./assets/images/movie-rank.png" alt="Preview of the Movie Ranking project" height="200" />
+                <div class="project-actions">
+                    <button class="fav-btn" aria-pressed="false" title="Favoritar">☆</button>
+                    <button class="open-btn" type="button">Abrir</button>
+                </div>
             </section>
         </main>
 
-        <hr/>
+        <hr />
 
         <!-- FIX 11: footer semântico pro rodapé -->
         <footer>
-            <p>&copy; 2026 Samyuktha</p>
+            <p>&#169; 2026 Samyuktha</p>
         </footer>
+        <script src="scripts.js"></script>
     </body>
 </html>

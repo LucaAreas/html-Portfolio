@@ -6,6 +6,18 @@
     --font-body: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     --font-nav: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --color-text: #333;
+    /* tema claro */
+    --bg: #fff;
+    --card-bg: #fff;
+    --muted: #666;
+}
+
+/* tema escuro quando [data-theme="dark"] no :root */
+:root[data-theme="dark"] {
+    --bg: #0f1115;
+    --card-bg: #0b0c0f;
+    --color-text: #e6e6e6;
+    --muted: #bdbdbd;
 }
 
 /* reset simples, ajuda a evitar comportamentos inconsistentes entre navegadores */
@@ -16,6 +28,8 @@
 body {
     margin: 0;
     padding: 0 16px;
+    background: var(--bg);
+    color: var(--color-text);
 }
 
 header {
@@ -29,6 +43,44 @@ h1.title {
 .subtitle {
     font-family: var(--font-subtitle);
     font-size: medium;
+}
+
+/* estilo do botão de alternância de tema */
+#theme-toggle {
+    margin-top: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: transparent;
+    cursor: pointer;
+}
+
+/* modal de imagem */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.6);
+    z-index: 9999;
+}
+
+.modal-image {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.5);
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
 }
 
 /* FIX 2: nav real com estilo próprio, antes eram divs soltas no fim da página */
@@ -83,6 +135,105 @@ footer {
     font-family: var(--font-nav);
     color: var(--color-text);
     padding: 20px 0;
+}
+
+/* ações do projeto (favoritar / abrir) */
+.project-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.fav-btn {
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.fav-btn[aria-pressed="true"] {
+    color: gold;
+    border-color: rgba(0,0,0,0.12);
+}
+
+/* toast */
+.toast {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    z-index: 10010;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* back to top */
+#back-to-top {
+    position: fixed;
+    right: 16px;
+    bottom: 80px;
+    display: none;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    z-index: 10010;
+}
+
+/* modal do projeto (detalhes) */
+.project-modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.6);
+    z-index: 10020;
+}
+
+.project-modal {
+    background: var(--card-bg);
+    color: var(--color-text);
+    width: min(900px, 95%);
+    max-height: 90vh;
+    overflow: auto;
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.project-modal img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto 12px;
+}
+
+/* loading screen */
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    z-index: 11000;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    border: 6px solid rgba(0,0,0,0.1);
+    border-top-color: rgba(0,0,0,0.6);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 /* FIX 6: media query — sem isso o layout não se adapta a telas pequenas */
