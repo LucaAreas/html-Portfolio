@@ -12,61 +12,64 @@
         <title>Samyuktha's Portfolio</title>
     </head>
     <body>
-        <!-- FIX 4: <header> semântico em vez de h1/h1 soltos direto no body -->
-        <header>
-            <h1 class="title">Samyuktha's Portfolio</h1>
-            <p class="subtitle">Web Developer</p>
-            <!-- Botão para alternar tema (JS) -->
-            <button id="theme-toggle" aria-pressed="false" type="button">Modo escuro</button>
-            <!-- Contador de visitas -->
-            <div id="visit-counter" aria-live="polite" style="margin-top:8px">Visitas: <span id="visits">0</span></div>
-            <!-- Troca de idioma -->
-            <div style="margin-top:8px">
-                <button id="lang-en" type="button" data-lang="en">EN</button>
-                <button id="lang-pt" type="button" data-lang="pt">PT</button>
+        <div class="site-container">
+            <header class="site-header">
+                <div class="hero">
+                    <div class="hero-text">
+                        <h1 class="title">Samyuktha</h1>
+                        <p class="subtitle">Web Developer &amp; Frontend Enthusiast</p>
+                        <p class="lead">Designing accessible, responsive and performant interfaces.</p>
+                        <div class="hero-actions">
+                            <button id="theme-toggle" aria-pressed="false" type="button">Modo escuro</button>
+                            <button id="contact-cta" type="button">Contact</button>
+                        </div>
+                    </div>
+                    <div class="hero-links" aria-hidden="true">
+                        <!-- placeholders para redes sociais -->
+                        <a href="#" aria-label="GitHub">GitHub</a>
+                        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="meta-row">
+                    <div id="visit-counter" aria-live="polite">Visitas: <span id="visits">0</span></div>
+                    <div class="lang-switch">
+                        <button id="lang-en" type="button" data-lang="en">EN</button>
+                        <button id="lang-pt" type="button" data-lang="pt">PT</button>
+                    </div>
+                </div>
+            </header>
+
+        <main class="content">
+            <div class="controls">
+                <input id="project-search" type="search" placeholder="Pesquisar projetos..." aria-label="Pesquisar projetos" />
+                <div id="total-projects">Total: <span id="total-count">0</span></div>
             </div>
-            <!-- FIX 5: era um segundo <h1>, agora virou <p> — só pode haver um h1 por página -->
-        </header>
 
-        <!-- Pesquisa e total de projetos -->
-        <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:16px 0;">
-            <input id="project-search" type="search" placeholder="Pesquisar projetos..." aria-label="Pesquisar projetos" />
-            <div id="total-projects">Total: <span id="total-count">0</span></div>
-        </div>
+            <nav class="main-nav">
+                <a href="./public/about.html">About Me</a>
+                <a href="./public/contact.html">Contact Me</a>
+            </nav>
 
-        <!-- FIX 6: <nav> real, em vez de links soltos em divs no rodapé -->
-        <nav class="main-nav">
-            <a href="./public/about.html">About Me</a>
-            <a href="./public/contact.html">Contact Me</a>
-        </nav>
+            <section class="projects-grid">
+                <section class="project-card" data-title-en="Birthday Invitation" data-title-pt="Convite de Aniversário" data-desc-en="Birthday invitation project" data-desc-pt="Projeto convite de aniversário">
+                    <h3><a href="./public/sam/birthday_index.html">Birthday Invitation</a></h3>
+                    <img src="./assets/images/birthday.png" alt="Preview of the Birthday Invitation project" height="200" />
+                    <div class="project-actions">
+                        <button class="fav-btn" aria-pressed="false" title="Favoritar">☆</button>
+                        <button class="open-btn" type="button">Abrir</button>
+                    </div>
+                </section>
 
-        <hr />
-
-        <!-- FIX 7: <main> engloba o conteúdo principal da página -->
-        <main>
-            <!-- FIX 8: <section> em vez de <div> genérica, e todas usam a mesma classe .project-card -->
-            <section class="project-card" data-title-en="Birthday Invitation" data-title-pt="Convite de Aniversário" data-desc-en="Birthday invitation project" data-desc-pt="Projeto convite de aniversário">
-                <h2><a href="./public/sam/birthday_index.html">Birthday Invitation</a></h2>
-                <!-- FIX 9: alt descritivo em toda imagem -->
-                <img src="./assets/images/birthday.png" alt="Preview of the Birthday Invitation project" height="200" />
-                <div class="project-actions">
-                    <button class="fav-btn" aria-pressed="false" title="Favoritar">☆</button>
-                    <button class="open-btn" type="button">Abrir</button>
-                </div>
-            </section>
-
-            <section class="project-card" data-title-en="Movie Ranking Project" data-title-pt="Projeto de Ranking de Filmes" data-desc-en="Movie ranking" data-desc-pt="Ranking de filmes">
-                <h2><a href="./public/sam/movie_index.html">Movie Ranking Project</a></h2>
-                <!-- FIX 10: nome do arquivo sem espaço (movie-rank.png em vez de "movie rank.png") -->
-                <img src="./assets/images/movie-rank.png" alt="Preview of the Movie Ranking project" height="200" />
-                <div class="project-actions">
-                    <button class="fav-btn" aria-pressed="false" title="Favoritar">☆</button>
-                    <button class="open-btn" type="button">Abrir</button>
-                </div>
+                <section class="project-card" data-title-en="Movie Ranking Project" data-title-pt="Projeto de Ranking de Filmes" data-desc-en="Movie ranking" data-desc-pt="Ranking de filmes">
+                    <h3><a href="./public/sam/movie_index.html">Movie Ranking Project</a></h3>
+                    <img src="./assets/images/movie-rank.png" alt="Preview of the Movie Ranking project" height="200" />
+                    <div class="project-actions">
+                        <button class="fav-btn" aria-pressed="false" title="Favoritar">☆</button>
+                        <button class="open-btn" type="button">Abrir</button>
+                    </div>
+                </section>
             </section>
         </main>
-
-        <hr />
 
         <!-- FIX 11: footer semântico pro rodapé -->
         <footer>

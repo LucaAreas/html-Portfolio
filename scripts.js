@@ -126,8 +126,16 @@
 	function updateTotal() { if (totalCount) totalCount.textContent = String(projects.filter(p => p.style.display !== 'none').length); }
 
 	// assign ids
-	projects.forEach((p, i) => { if (!p.dataset.id) p.dataset.id = `proj-${i}`; });
+	projects.forEach((p, i) => { if (!p.dataset.id) p.dataset.id = `proj-${i}`; p.style.opacity = '0'; p.style.transform = 'translateY(8px)'; });
 	updateTotal();
+
+	// animate cards in on load
+	function revealCards() {
+		projects.forEach((p, i) => {
+			setTimeout(() => { p.style.transition = 'opacity 420ms ease, transform 420ms ease'; p.style.opacity = '1'; p.style.transform = 'translateY(0)'; }, 80 * i);
+		});
+	}
+	window.addEventListener('load', revealCards);
 
 	// --- Toast helper ---
 	function showToast(message, ms = 3000) {
@@ -288,6 +296,10 @@
 	// Initial language & theme
 	applyTheme(getPreferredTheme());
 	applyLanguage(currentLang);
+
+	// smooth scroll for contact CTA (if exists)
+	const contactCta = document.getElementById('contact-cta');
+	if (contactCta) contactCta.addEventListener('click', () => { const target = document.querySelector('nav.main-nav a[href$="contact.html"]'); if (target) { window.open(target.href, '_blank'); } else { window.scrollTo({ top: 0, behavior: 'smooth' }); } });
 
 	// Hide loading after minimal delay
 	window.addEventListener('load', () => { setTimeout(() => { loading.remove(); }, 350); });

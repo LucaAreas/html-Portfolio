@@ -10,6 +10,9 @@
     --bg: #fff;
     --card-bg: #fff;
     --muted: #666;
+    --accent: #4f46e5; /* indigo-600 */
+    --accent-2: #06b6d4; /* cyan */
+    --surface: #f7f9fc;
 }
 
 /* tema escuro quando [data-theme="dark"] no :root */
@@ -30,10 +33,13 @@ body {
     padding: 0 16px;
     background: var(--bg);
     color: var(--color-text);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    line-height: 1.45;
 }
 
 header {
-    text-align: center;
+    text-align: left;
+    padding: 28px 0 8px;
 }
 
 h1.title {
@@ -43,6 +49,52 @@ h1.title {
 .subtitle {
     font-family: var(--font-subtitle);
     font-size: medium;
+}
+
+.site-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.hero-text .title {
+    font-size: 28px;
+    margin: 0;
+}
+
+.lead {
+    color: var(--muted);
+    margin-top: 8px;
+}
+
+.hero-actions button {
+    margin-right: 8px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background: var(--accent);
+    color: #fff;
+}
+
+.hero-links a {
+    display: inline-block;
+    margin-left: 10px;
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
 }
 
 /* estilo do botão de alternância de tema */
@@ -105,30 +157,37 @@ h1.title {
 /* FIX 4: uma única classe genérica .project-card substitui os 4 blocos
    quase idênticos (div.birthday, div.movie, div.about, div.contact) */
 main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    padding: 18px 0 60px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
 }
 
 .project-card {
+    background: var(--card-bg);
     font-family: var(--font-body);
-    font-size: medium;
-    text-align: center;
+    font-size: 15px;
+    text-align: left;
     color: var(--color-text);
-    margin-bottom: 20px;
-    padding: 10px;
-    /* FIX 5: leve destaque visual no card, algo comum em portfólios */
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    max-width: 280px;
+    padding: 14px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(15, 17, 21, 0.06);
+    transition: transform 0.24s cubic-bezier(.2,.8,.2,1), box-shadow 0.24s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(2,6,23,0.12);
 }
+
+.project-card h3 { margin: 0; font-size: 18px; }
+.project-card img { width: 100%; border-radius: 8px; height: auto; object-fit: cover; }
 
 footer {
     text-align: center;
@@ -169,6 +228,8 @@ footer {
     border-radius: 8px;
     z-index: 10010;
     box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    opacity: 1;
+    transition: opacity 0.3s ease;
 }
 
 /* back to top */
@@ -182,6 +243,8 @@ footer {
     border: none;
     cursor: pointer;
     z-index: 10010;
+    background: var(--accent-2);
+    color: white;
 }
 
 /* modal do projeto (detalhes) */
@@ -221,6 +284,8 @@ footer {
     justify-content: center;
     background: var(--bg);
     z-index: 11000;
+    opacity: 1;
+    transition: opacity 0.25s ease;
 }
 
 .spinner {
@@ -238,12 +303,7 @@ footer {
 
 /* FIX 6: media query — sem isso o layout não se adapta a telas pequenas */
 @media (max-width: 600px) {
-    main {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .project-card {
-        max-width: 100%;
-    }
+    .hero { flex-direction: column; align-items: flex-start; }
+    .hero-links { margin-top: 12px; }
+    .projects-grid { grid-template-columns: 1fr; }
 }
